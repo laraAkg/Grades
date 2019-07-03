@@ -1,5 +1,11 @@
 <resources>
     <string name="app_name">Grades</string>
     <string name="add">Add</string>
+    <string name="summary">Summary</string>
+    <string name="durchschnittsnote">average mark</string>
+    <string name="dlickForNotification">Click for Notification</string>
+    <string name="noteEingeben">Enter mark</string>
+    <string name="askforCameraPermission">Ask for Camera Permission</string>
+    <string name="mark">Mark</string>
 
 </resources>
