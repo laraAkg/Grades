@@ -15,7 +15,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -31,7 +30,6 @@ public class MyRecyclerView extends AppCompatActivity {
     private RecyclerView.LayoutManager layoutManager;
 
     private List<String> subjects = new ArrayList<String>();
-
 
 
     private static final int MY_NOTIFICATION_ID = 12345;
@@ -81,7 +79,6 @@ public class MyRecyclerView extends AppCompatActivity {
         notificationManager.notify(MY_NOTIFICATION_ID, notification);
     }
 
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -109,6 +106,4 @@ public class MyRecyclerView extends AppCompatActivity {
         inflater.inflate(R.menu.menu, menu);
         return super.onCreateOptionsMenu(menu);
     }
-
-
 }

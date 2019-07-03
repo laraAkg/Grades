@@ -18,7 +18,8 @@
         </activity>
         <activity android:name=".SummaryActivity" />
         <activity android:name=".MyRecyclerView"/>
-        <uses-permission android:name="android.permission." />
     </application>
+    <uses-permission android:name="android.permission.CAMERA" />
+
 
 </manifest>

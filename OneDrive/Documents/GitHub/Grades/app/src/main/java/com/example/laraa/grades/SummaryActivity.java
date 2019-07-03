@@ -1,18 +1,25 @@
 package com.example.laraa.grades;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class SummaryActivity extends AppCompatActivity {
 
+    private static final int MY_PERMISSIONS_REQUEST_CAMERA = 1;
     private TextView textView;
-    private Button backBtn;
+    private Button permissionBtn;
 
 
     @Override
@@ -20,12 +27,54 @@ public class SummaryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_summary);
 
-        backBtn = (Button) findViewById(R.id.backBtn);
-
+        permissionBtn = (Button) findViewById(R.id.permissionBtn);
         showAverage();
 
+        permissionBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                requestPermission();
+            }
+        });
     }
 
+
+    private void requestPermission() {
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "// Permission is not granted!", Toast.LENGTH_SHORT).show();
+        }
+        if (ContextCompat.checkSelfPermission(this,
+                Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            Toast.makeText(this, "// Permission is not granted!", Toast.LENGTH_SHORT).show();
+
+            if (ActivityCompat.shouldShowRequestPermissionRationale(this,
+                    Manifest.permission.CAMERA)) {
+                Toast.makeText(this, "// Show an explanation to the user *asynchronously*", Toast.LENGTH_SHORT).show();
+            } else {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, MY_PERMISSIONS_REQUEST_CAMERA);
+            }
+        } else {
+            Toast.makeText(this, "// Permission has already been granted!", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        switch (requestCode) {
+            case MY_PERMISSIONS_REQUEST_CAMERA: {
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    Toast.makeText(this, "// permission was granted, yay!!", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "// permission denied, boo!", Toast.LENGTH_SHORT).show();
+
+                }
+            }
+        }
+    }
 
     private void showAverage() {
         Intent intent = getIntent();
